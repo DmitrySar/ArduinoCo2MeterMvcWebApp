@@ -1,0 +1,41 @@
+#graph.graph {
+    border: 1px dashed #77FF5C;
+    padding: 5px;
+}
+
+#graph .item {
+    margin: 2px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    padding: 3px;
+    border-radius: 3px;
+    background-color: #00508C;
+    box-shadow: 0 0 1px #2280AC;
+}
+
+#graph .item:hover {
+    background-color: #2280AC;
+    box-shadow: 0 0 2px #2280AC;
+}
+
+
+#graph.horizontal {
+    width: 200px;
+}
+
+#graph.horizontal .item {
+    height: 20px;
+    text-align: right;
+}
+
+#graph.vertical {
+    height: 120px;
+    width: 200px;
+    padding-bottom: 10px;
+}
+
+#graph.vertical .item {
+    width: 20px;
+    float: left;
+    display: inline-block;
+}
