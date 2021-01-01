@@ -1,6 +1,10 @@
 #graph.graph {
+    /*display: table;*/
+    /*position: static;*/
     border: 1px dashed #77FF5C;
     padding: 5px;
+    /*float: left;*/
+
 }
 
 #graph .item {

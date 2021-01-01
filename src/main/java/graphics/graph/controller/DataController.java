@@ -15,10 +15,9 @@ import java.util.stream.Stream;
 @Controller
 public class DataController {
 
-    List<ISensor> temperatures = new ArrayList<>();
-
     @GetMapping("/")
     public String getStartPage(Model model) {
+        List<ISensor> temperatures = new ArrayList<>();
         IntStream.range(0, 10).forEach(n -> temperatures.add(new TemperatureSensor()));
         model.addAttribute("temperatures", temperatures);
         return "index";
