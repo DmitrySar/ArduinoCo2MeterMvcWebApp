@@ -8,8 +8,8 @@
 <body style="background: black; color: white">
 <h1>Данные с датчиков</h1>
 <div id="graph" class="graph vertical" >
-    <span th:each="t: ${temperatures}">
-    <div class="item" th:style="|height:${2 * t.value}px; margin-top:${110 - 2 * t.value}px|" th:text="${#numbers.formatDecimal(t.value, 2, 'DEFAULT', 1, 'POINT')}">10</div>
+    <span th:each="t: ${temperatures}" th:with="val=${2 * t.value}">
+    <div class="item" th:style="|height:${val}px; margin-top:${110 - val}px|" th:text="${#numbers.formatDecimal(t.value, 2, 'DEFAULT', 1, 'POINT')}">10</div>
 <!--    <div class="item" style="height:100px;margin-top:10px">50</div>-->
     </span>
 </div>
