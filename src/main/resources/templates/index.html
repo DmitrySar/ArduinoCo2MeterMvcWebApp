@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/graph.css">
     <title>test graphics</title>
+    <script type="text/javascript">
+        function doGet() {
+            const Http = new XMLHttpRequest();
+            const url='http://localhost:8080/getsensor';
+            Http.open("GET", url);
+            Http.send();
+
+            Http.onreadystatechange = (e) => {
+                document.getElementById("graph").innerHTML=Http.responseText;
+
+                // JSON.parse(Http.responseText, function(k, v) {
+                //     document.getElementById("graph").innerHTML = v;
+                //     // return v;
+                // });
+            }
+        }
+    </script>
 </head>
 <body style="background: black; color: white">
 <h1>Данные с датчиков</h1>
@@ -16,6 +33,7 @@
         <h3>Температура</h3>
     </div>
 </div>
+<button onclick="doGet()">Click Me</button>
 
 </body>
 </html>
