@@ -1,3 +1,5 @@
+const url='http://192.168.1.131:8080/getsensor';
+
 function startAsync() {
     setInterval(
         () => doGet(),
@@ -7,7 +9,7 @@ function startAsync() {
 
 function doGet() {
     const Http = new XMLHttpRequest();
-    const url='http://localhost:8080/getsensor';
+
     Http.open("GET", url);
     Http.send();
 
