@@ -1,3 +1,10 @@
+function startAsync() {
+    setInterval(
+        () => doGet(),
+        3000
+    );
+}
+
 function doGet() {
     const Http = new XMLHttpRequest();
     const url='http://localhost:8080/getsensor';
