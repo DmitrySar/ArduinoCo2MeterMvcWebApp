@@ -12,9 +12,11 @@ import java.util.stream.IntStream;
 @RestController
 public class AsyncController {
     @GetMapping("getsensor")
-    public List<ISensor> getSensorValues() {
+    public List<Double> getSensorValues() {
         List<ISensor> temperatures = new ArrayList<>();
         IntStream.range(0, 10).forEach(n -> temperatures.add(new TemperatureSensor()));
-        return temperatures;
+        List<Double> res = new ArrayList<>();
+        temperatures.forEach(t -> res.add(t.getValue()));
+        return res;
     }
 }
