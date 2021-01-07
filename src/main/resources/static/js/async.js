@@ -1,10 +1,12 @@
 const url='http://localhost:8080/getsensor';
+const TIMEOUT = 3000;
+const DECIMAL_LENGTH = 4;
 
 
 function startAsync() {
     setInterval(
         () => doGet(),
-        3000
+        TIMEOUT
     );
 }
 
@@ -32,7 +34,7 @@ function addTextToGraph(t, tmpText) {
 }
 
 function setTextToGraph(t) {
-    return decorate(t.substring(0, 4));
+    return decorate(t.substring(0, DECIMAL_LENGTH));
 }
 
 function decorate(t) {
