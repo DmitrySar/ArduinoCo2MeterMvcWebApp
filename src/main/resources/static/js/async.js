@@ -1,4 +1,4 @@
-const url='http://192.168.1.131:8080/getsensor';
+const url='http://localhost:8080/getsensor';
 
 
 function startAsync() {
@@ -18,17 +18,17 @@ function doGet() {
         let text = Http.responseText;
         text = text.substring(1, text.length - 1);
         let texts = text.split(",");
-        let tmpText = setTextToGraph(texts[0]);
-        for(let i = 1; i < texts.length; i++) {
-            tmpText = addTextToGraph(texts[i], tmpText);
-        }
-        document.getElementById("graph").innerHTML = tmpText;
+        let tmpText = "";
+        texts.forEach((t) => {
+            tmpText = addTextToGraph(t, tmpText);
+        });
+         document.getElementById("graph").innerHTML = tmpText;
     }
 }
 
 function addTextToGraph(t, tmpText) {
     let tmp = tmpText;
-    return tmp + decorate(t.substring(0, 4));
+    return tmp + setTextToGraph(t);
 }
 
 function setTextToGraph(t) {
