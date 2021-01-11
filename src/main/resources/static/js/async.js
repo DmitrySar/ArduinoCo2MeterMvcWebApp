@@ -1,5 +1,5 @@
-const url='http://localhost:8080/getsensor';
-const TIMEOUT = 3000;
+const url='http://192.168.1.28:8080/getsensor';
+const TIMEOUT = 10_000;
 const DECIMAL_LENGTH = 4;
 
 
