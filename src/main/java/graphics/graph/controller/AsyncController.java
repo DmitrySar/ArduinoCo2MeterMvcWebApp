@@ -21,7 +21,7 @@ public class AsyncController {
     public List<Double> getSensorValues() {
 
         List<Double> res = new ArrayList<>();
-        int size = temperatures.size() > 10 ? temperatures.size() - VALUES_SIZE : 0;
+        int size = temperatures.size() > VALUES_SIZE ? temperatures.size() - VALUES_SIZE : 0;
         temperatures.subList(size, temperatures.size())
                 .forEach(t -> res.add(t.getValue()));
         return res;
