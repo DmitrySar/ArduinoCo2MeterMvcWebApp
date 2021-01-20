@@ -29,14 +29,14 @@ void setup() {
     while(1);
   }
   while(!ccs.available());
-  ccs.setEnvironmentalData(dht.readHumidity(), dht.readTemperature());
+  // ccs.setEnvironmentalData(dht.readHumidity(), dht.readTemperature());
 }
 
 void loop() {
   float h = dht.readHumidity();
   float t = dht.readTemperature();
  if(ccs.available()){
-  ccs.setEnvironmentalData(h, t);
+  // ccs.setEnvironmentalData(h, t);
   delay(500);
   if(!ccs.readData()){
   Serial.print(t);
@@ -55,7 +55,7 @@ void loop() {
 //      Serial.print(c);  
 //    }
 //  }
-delay(500);
+delay(10000);
 }
 
 // http get request
