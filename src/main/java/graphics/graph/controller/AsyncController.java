@@ -32,7 +32,7 @@ public class AsyncController {
                                @RequestParam(defaultValue = "0") double h,
                                @RequestParam(defaultValue = "0") double tvoc,
                                @RequestParam(defaultValue = "0") double co2) {
-        System.out.printf("t=%.2f, h=%.2f, tvoc=%.2f, co2=%.2f\n", t, h, tvoc, co2);
+        //System.out.printf("t=%.2f, h=%.2f, tvoc=%.2f, co2=%.2f\n", t, h, tvoc, co2);
         temperatures.add(new TemperatureSensor(t));
     }
 

@@ -20,7 +20,7 @@ int inputPin = 3;
 DHT dht(inputPin, DHTTYPE);
 
 void setup() {
-  Serial.begin(9600);
+  // Serial.begin(9600);
   pinMode(inputPin, INPUT);
   
   dht.begin();
@@ -40,12 +40,12 @@ void loop() {
     float tvoc = ccs.getTVOC();
     float co2 = ccs.geteCO2();
     doGet(String(t), String(h), String(tvoc), String(co2)); //seng GET request  
-//    while(client.connected()){
-//      if(client.available()){
-//        char c = client.read();
-//        Serial.print(c);  
-//      }
-//    }
+    while(client.connected()){
+      if(client.available()){
+        char c = client.read();
+        // Serial.print(c);  
+      }
+    }
   }
  }
 //  delay(500);
@@ -55,20 +55,20 @@ void loop() {
 void doGet(String t, String h, String tvoc, String co2) {
     Ethernet.begin(mac, myIP);
     if (client.connect(server, serverPort)){
-      Serial.println(F("Connected to server"));
+      // Serial.println(F("Connected to server"));
       client.print(F("GET /sens?t="));
       client.print(t);
-//      client.print(F("&h="));
-//      client.print(h);
-//      client.print(F("&tvoc="));
-//      client.print(tvoc);
-//      client.print(F("&co2="));
-//      client.print(co2);
+      client.print(F("&h="));
+      client.print(h);
+      client.print(F("&tvoc="));
+      client.print(tvoc);
+      client.print(F("&co2="));
+      client.print(co2);
       client.println(F(" HTTP/1.1"));
       client.print(F("Host: "));
       client.println(server);
       client.println();
   }else{
-      Serial.println(F("Connection to server failed"));
+      // Serial.println(F("Connection to server failed"));
   }
 }
