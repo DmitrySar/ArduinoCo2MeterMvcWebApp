@@ -45,5 +45,9 @@ function setTextToGraph(t) {
 
 function decorate(t, k) {
     let v = k * 2 * parseFloat(t);
-    return '<div class="item" style="height:'+v+'px;margin-top:'+(110 - v)+'px">'+t+'</div>';
+    return '<div class="item" style="' + getColor(k) + ' height:'+v+'px;margin-top:'+(110 - v)+'px">'+t+'</div>';
+}
+
+function getColor(k) {
+    return k < 1 ? "background-color: #d00318;" : "background-color: #00508C;";
 }
