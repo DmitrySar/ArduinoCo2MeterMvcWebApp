@@ -1,16 +1,19 @@
-const url='http://192.168.1.28:8080/getsensor';
+//const url='http://192.168.1.28:8080/getsensor';
 const TIMEOUT = 10_000;
 const DECIMAL_LENGTH = 4;
 
 
 function startAsync() {
     setInterval(
-        () => doGet(),
+        () => {
+            doGet('http://192.168.1.28:8080/getsensor', 'graph');
+            doGet('http://192.168.1.28:8080/gettvoc', 'tvoc');
+        },
         TIMEOUT
     );
 }
 
-function doGet() {
+function doGet(url, id) {
     const Http = new XMLHttpRequest();
 
     Http.open("GET", url);
@@ -24,7 +27,7 @@ function doGet() {
         texts.forEach((t) => {
             tmpText = addTextToGraph(t, tmpText);
         });
-         document.getElementById("graph").innerHTML = tmpText;
+         document.getElementById(id).innerHTML = tmpText;
     }
 }
 
@@ -34,10 +37,13 @@ function addTextToGraph(t, tmpText) {
 }
 
 function setTextToGraph(t) {
-    return decorate(t.substring(0, DECIMAL_LENGTH));
+    let v = parseFloat(t);
+    //масштабирование 50 - максимальное значение на графике
+    let k = v > 50 ? 50 / v : 1;
+    return decorate(t.substring(0, DECIMAL_LENGTH), k);
 }
 
-function decorate(t) {
-    let v = 2 * parseFloat(t);
+function decorate(t, k) {
+    let v = k * 2 * parseFloat(t);
     return '<div class="item" style="height:'+v+'px;margin-top:'+(110 - v)+'px">'+t+'</div>';
 }

@@ -7,17 +7,20 @@
     <title>test graphics</title>
 </head>
 <body style="background: black; color: white" onload="startAsync()">
-<h1>Данные с датчиков</h1>
-<div id="graph" class="graph vertical" >
-    <span th:each="t: ${temperatures}" th:with="val=${2 * t.value}">
-    <div class="item"  th:style="|height:${val}px; margin-top:${110 - val}px|" th:text="${#numbers.formatDecimal(t.value, 2, 'DEFAULT', 1, 'POINT')}">10</div>
-<!--    <div class="item" style="height:100px;margin-top:10px">50</div>-->
-    </span>
-</div>
+<h1 class="main">Данные с датчиков</h1>
+
 <div>
-    <h3>Температура</h3>
+<div id="graph" class="graph vertical" >
+<!--    <span th:each="t: ${temperatures}" th:with="val=${2 * t.value}">-->
+<!--    <div class="graph item"  th:style="|height:${val}px; margin-top:${110 - val}px|" th:text="${#numbers.formatDecimal(t.value, 2, 'DEFAULT', 1, 'POINT')}">10</div>-->
+<!--    <div class="item" style="height:100px;margin-top:10px">50</div>-->
+<!--    </span>-->
 </div>
-<!--<button onclick="startAsync()">Click Me</button>-->
+
+<div id="tvoc" class="graph vertical">
+
+</div>
+</div>
 
 </body>
 </html>

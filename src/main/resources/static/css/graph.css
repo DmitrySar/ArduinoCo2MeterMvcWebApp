@@ -1,13 +1,19 @@
-#graph.graph {
-    display: table;
+.main {
+    display: inline-block;
+    float: bottom;
+}
+
+.graph {
+    display: inline-block;
     /*position: static;*/
     border: 1px dashed #77FF5C;
     padding: 5px;
-    float: bottom;
+    float: left;
+    margin-right: 10px;
 
 }
 
-#graph .item {
+ .item {
     margin: 2px;
     color: #fff;
     text-shadow: 1px 1px 1px #000;
@@ -17,28 +23,28 @@
     box-shadow: 0 0 1px #2280AC;
 }
 
-#graph .item:hover {
+ .item:hover {
     background-color: #2280AC;
     box-shadow: 0 0 2px #2280AC;
 }
 
 
-#graph.horizontal {
+.horizontal {
     width: 200px;
 }
 
-#graph.horizontal .item {
+.horizontal .item {
     height: 20px;
     text-align: right;
 }
 
-#graph.vertical {
+.vertical {
     height: 120px;
     width: 400px;
     padding-bottom: 10px;
 }
 
-#graph.vertical .item {
+.vertical .item {
     width: 30px;
     float: left;
     display: inline-block;
