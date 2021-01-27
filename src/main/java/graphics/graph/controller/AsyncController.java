@@ -1,8 +1,6 @@
 package graphics.graph.controller;
 
-import graphics.graph.entity.ISensor;
-import graphics.graph.entity.TemperatureSensor;
-import graphics.graph.entity.TvocSensor;
+import graphics.graph.entity.*;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,8 +16,10 @@ public class AsyncController {
     final private int VALUES_SIZE = 10;
     private List<ISensor> temperatures = new ArrayList<>(VALUES_SIZE);
     private List<ISensor> tvocs = new ArrayList<>();
-    private TemperatureSensor currentTemperature = new TemperatureSensor();
-    private TvocSensor currentTvocSensor = new TvocSensor();
+    private ISensor currentTemperature = new TemperatureSensor();
+    private ISensor currentTvocSensor = new TvocSensor();
+    private ISensor currentCO2Sensor = new CO2Sensor();
+    private ISensor currentHumiditySensor = new HumiditySensor();
 
     @GetMapping("getsensor")
     public List<Double> getSensorValues() {
@@ -43,6 +43,16 @@ public class AsyncController {
         return currentTvocSensor;
     }
 
+    @GetMapping("humidity")
+    public ISensor getCurrentHumiditySensor() {
+        return currentHumiditySensor;
+    }
+
+    @GetMapping("co2")
+    public ISensor getCurrentCO2Sensor() {
+        return currentCO2Sensor;
+    }
+
 
     @GetMapping("/sens")
     public void getSensorValue(@RequestParam(defaultValue = "0") double t,
@@ -52,6 +62,8 @@ public class AsyncController {
 //        System.out.printf("t=%.2f, h=%.2f, tvoc=%.2f, co2=%.2f\n", t, h, tvoc, co2);
         currentTemperature = new TemperatureSensor(t);
         currentTvocSensor = new TvocSensor(tvoc);
+        currentCO2Sensor = new CO2Sensor(co2);
+        currentHumiditySensor = new HumiditySensor(h);
         temperatures.add(currentTemperature);
         tvocs.add(currentTvocSensor);
     }
