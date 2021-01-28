@@ -4,6 +4,8 @@ const DECIMAL_LENGTH = 4;
 
 
 function startAsync() {
+    doGet('http://192.168.1.28:8080/getsensor', 'graph');
+    doGet('http://192.168.1.28:8080/gettvoc', 'tvoc');
     setInterval(
         () => {
             doGet('http://192.168.1.28:8080/getsensor', 'graph');
