@@ -1,14 +1,12 @@
 package graphics.graph.controller;
 
 import graphics.graph.entity.*;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @RestController
 public class AsyncController {
@@ -55,17 +53,18 @@ public class AsyncController {
 
 
     @GetMapping("/sens")
-    public void getSensorValue(@RequestParam(defaultValue = "0") double t,
+    public String getSensorValue(@RequestParam(defaultValue = "0") double t,
                                @RequestParam(defaultValue = "0") double h,
                                @RequestParam(defaultValue = "0") double tvoc,
                                @RequestParam(defaultValue = "0") double co2) {
-//        System.out.printf("t=%.2f, h=%.2f, tvoc=%.2f, co2=%.2f\n", t, h, tvoc, co2);
+        System.out.printf("t=%.2f, h=%.2f, tvoc=%.2f, co2=%.2f\n", t, h, tvoc, co2);
         currentTemperature = new TemperatureSensor(t);
         currentTvocSensor = new TvocSensor(tvoc);
         currentCO2Sensor = new CO2Sensor(co2);
         currentHumiditySensor = new HumiditySensor(h);
         temperatures.add(currentTemperature);
         tvocs.add(currentTvocSensor);
+        return "ok";
     }
 
     private List<Double> getTenLastValues(List<ISensor> values) {

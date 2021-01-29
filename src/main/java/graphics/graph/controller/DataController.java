@@ -23,4 +23,9 @@ public class DataController {
         return "index";
     }
 
+    @GetMapping("sensors")
+    public String getSensors() {
+        return "sensors";
+    }
+
 }

@@ -22,7 +22,7 @@ DHT dht(inputPin, DHTTYPE);
 void setup() {
   // Serial.begin(9600);
   pinMode(inputPin, INPUT);
-  
+
   dht.begin();
   if(!ccs.begin()){
     while(1);
@@ -39,11 +39,11 @@ void loop() {
   if(!ccs.readData()){
     float tvoc = ccs.getTVOC();
     float co2 = ccs.geteCO2();
-    doGet(String(t), String(h), String(tvoc), String(co2)); //seng GET request  
+    doGet(String(t), String(h), String(tvoc), String(co2)); //seng GET request
     while(client.connected()){
       if(client.available()){
         char c = client.read();
-        // Serial.print(c);  
+        // Serial.print(c);
       }
     }
   }
