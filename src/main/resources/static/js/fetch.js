@@ -18,12 +18,6 @@ const H = 250;
 // отступ нижней подписи
 const DELTA = 10;
 
-function insertData (id) {
-    sensor.time = getTime();
-    sensor.value = (Math.random() * (1500 - sensor.min) + sensor.min).toFixed(0);
-    calc(id, sensor);
-}
-
 // Параметры столбца
 parameters = {
     k: 1,
@@ -68,12 +62,4 @@ function addInnerHTML(id, parameters, sensor) {
         + `<div class="innerDiv" style="margin-top: ${parameters.h - DELTA}px;">${sensor.time}`
         + `</div></div>`;
 
-}
-
-function getTime() {
-    let today = new Date();
-    let h = today.getHours();
-    let m = today.getMinutes();
-
-    return ("0" + h).slice(-2) + ":" + ("0" + m).slice(-2);
 }
