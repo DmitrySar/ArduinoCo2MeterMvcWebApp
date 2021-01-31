@@ -25,17 +25,17 @@ parameters = {
     mTop: 1
 };
 
-function out(id) {
-    doGet(url + id);
-    calc(id, sensor);
+function co2Out(id) {
+    doGet(url + id, id);
 }
 
-function doGet(url) {
+function doGet(url, id) {
     fetch(url).then(function(response) {
         if(response.ok) {
             response.json().then(function(s) {
                 sensor.value = s.value;
                 sensor.time = s.time.substr(11, 5);
+                calc(id, sensor);
             });
         } else {
             console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
