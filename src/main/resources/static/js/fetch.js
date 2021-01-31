@@ -1,9 +1,9 @@
-const url = "http://192.168.1.28:8080/";
+const url = "http://" + location.host + "/";
 
 // значения датчика СО2
 sensor = {
     max: 1000,
-    value: 700,
+    value: 0,
     time: "12:15",
     min: 400,
 
@@ -41,7 +41,7 @@ function doGet(url) {
         if(response.ok) {
             response.json().then(function(s) {
                 sensor.value = s.value;
-                // sensor.time = s.time;
+                sensor.time = s.time.substr(11, 5);
             });
         } else {
             console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);

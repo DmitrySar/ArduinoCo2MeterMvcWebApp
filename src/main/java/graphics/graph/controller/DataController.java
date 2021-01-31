@@ -2,11 +2,17 @@ package graphics.graph.controller;
 
 import graphics.graph.entity.ISensor;
 import graphics.graph.entity.TemperatureSensor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -24,7 +30,7 @@ public class DataController {
     }
 
     @GetMapping("sensors")
-    public String getSensors() {
+    public String getSensors() throws UnknownHostException {
         return "sensors";
     }
 

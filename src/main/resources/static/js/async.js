@@ -1,15 +1,15 @@
-//const url='http://192.168.1.28:8080/getsensor';
+const url='http://' + location.host + '/';
 const TIMEOUT = 10_000;
 const DECIMAL_LENGTH = 4;
 
 
 function startAsync() {
-    doGet('http://192.168.1.28:8080/getsensor', 'graph');
-    doGet('http://192.168.1.28:8080/gettvoc', 'tvoc');
+    doGet(url + 'getsensor', 'graph');
+    doGet(url + 'gettvoc', 'tvoc');
     setInterval(
         () => {
-            doGet('http://192.168.1.28:8080/getsensor', 'graph');
-            doGet('http://192.168.1.28:8080/gettvoc', 'tvoc');
+            doGet(url + 'getsensor', 'graph');
+            doGet(url + 'gettvoc', 'tvoc');
         },
         TIMEOUT
     );
