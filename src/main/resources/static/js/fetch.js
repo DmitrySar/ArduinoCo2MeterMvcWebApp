@@ -26,6 +26,14 @@ parameters = {
 };
 
 function co2Out(id) {
+    sensor.max = 1000;
+    sensor.min = 400;
+    doGet(url + id, id);
+}
+
+function temperatureOut(id) {
+    sensor.max = 50;
+    sensor.min = 0;
     doGet(url + id, id);
 }
 
