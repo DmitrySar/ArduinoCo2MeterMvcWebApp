@@ -37,6 +37,18 @@ function temperatureOut(id) {
     doGet(url + id, id);
 }
 
+function humidityOut(id) {
+    sensor.max = 100;
+    sensor.min = 0;
+    doGet(url + id, id);
+}
+
+function tvocOut(id) {
+    sensor.max = 100;
+    sensor.min = 0;
+    doGet(url + id, id);
+}
+
 function doGet(url, id) {
     fetch(url).then(function(response) {
         if(response.ok) {
