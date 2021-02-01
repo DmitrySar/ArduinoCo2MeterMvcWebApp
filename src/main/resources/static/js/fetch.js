@@ -2,7 +2,7 @@ const url = "http://" + location.host + "/";
 const TIMEOUT = 30000;
 
 function startAsync() {
-    // start();
+    start();
     setInterval(() => start(), TIMEOUT);
 }
 
@@ -38,33 +38,27 @@ parameters = {
 };
 
 function co2Out(id) {
-    sensor.max = 1000;
-    sensor.min = 400;
-    doGet(url + id, id);
+    doGet(url + id, id, 400, 1000);
 }
 
 function temperatureOut(id) {
-    sensor.max = 50;
-    sensor.min = 0;
-    doGet(url + id, id);
+    doGet(url + id, id, 0, 50);
 }
 
 function humidityOut(id) {
-    sensor.max = 100;
-    sensor.min = 0;
-    doGet(url + id, id);
+    doGet(url + id, id, 0, 100);
 }
 
 function tvocOut(id) {
-    sensor.max = 100;
-    sensor.min = 0;
-    doGet(url + id, id);
+    doGet(url + id, id, 0, 100);
 }
 
-function doGet(url, id) {
+function doGet(url, id, min, max) {
     fetch(url).then(function(response) {
         if(response.ok) {
             response.json().then(function(s) {
+                sensor.min = min;
+                sensor.max = max;
                 sensor.value = s.value;
                 sensor.time = s.time.substr(11, 5);
                 calc(id, sensor);
