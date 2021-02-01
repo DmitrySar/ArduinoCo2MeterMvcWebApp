@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/graph.css">
-    <script type="text/javascript" src="js/async.js"></script>
-<!--    <script type="application/javascript" src="js/fetch.js"></script>-->
-    <title>test graphics</title>
+    <meta charset="utf-8">
+    <title>graphics</title>
+    <link rel="stylesheet" href="css/graph2.css">
+    <script type="text/javascript" src="js/fetch.js"></script>
 </head>
-<body style="background: black; color: white" onload="startAsync()">
-<h1 class="main">Данные с датчиков</h1>
-
-<!--<br><button onclick="out('co2')">co2</button>-->
-<!--<button onclick="out('humidity')">humidity</button>-->
-<!--<button onclick="out('temperature')">temperature</button>-->
-<!--<button onclick="out('tvoc')">tvoc</button>-->
-
-<div>
-<div id="graph" class="graph vertical" >
-<!--    <span th:each="t: ${temperatures}" th:with="val=${2 * t.value}">-->
-<!--    <div class="graph item"  th:style="|height:${val}px; margin-top:${110 - val}px|" th:text="${#numbers.formatDecimal(t.value, 2, 'DEFAULT', 1, 'POINT')}">10</div>-->
-<!--    <div class="item" style="height:100px;margin-top:10px">50</div>-->
-<!--    </span>-->
+<body class="dark">
+<h1>Показания</h1>
+<div class="divClean">
+    <button onclick="co2Out('co2')">CO2</button>
+    <button onclick="tvocOut('tvoc')">tvoc</button>
+    <button onclick="temperatureOut('temperature')">temp</button>
+    <button onclick="humidityOut('humidity')">hum</button>
 </div>
 
-<div id="tvoc" class="graph vertical">
+<div id="co2" class="divClean" style="width: 100%;">
 
 </div>
+<div class="divClean">
+    Уровень CO2, PPM
+</div>
+<div id="tvoc" class="divClean" style="width: 100%;">
+
+</div>
+<div class="divClean">
+    ЛОВ, PPM
+</div>
+<div id="temperature" class="divClean" style="width: 100%;">
+
+</div>
+<div class="divClean">
+    Температура, C<sup>o</sup>
+</div>
+<div id="humidity" class="divClean" style="width: 100%;">
+
+</div>
+<div class="divClean">
+    Влажность, %
 </div>
 
 </body>

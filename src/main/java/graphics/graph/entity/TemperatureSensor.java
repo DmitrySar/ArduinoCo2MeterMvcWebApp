@@ -9,7 +9,7 @@ public class TemperatureSensor implements ISensor {
     private LocalDateTime time;
 
     public TemperatureSensor() {
-        value = new Random().nextDouble() * 50;
+
     }
 
     public TemperatureSensor(double value) {

@@ -10,26 +10,10 @@ import java.util.List;
 
 @RestController
 public class AsyncController {
-
-    final private int VALUES_SIZE = 10;
-    private List<ISensor> temperatures = new ArrayList<>(VALUES_SIZE);
-    private List<ISensor> tvocs = new ArrayList<>();
     private ISensor currentTemperature = new TemperatureSensor();
     private ISensor currentTvocSensor = new TvocSensor();
     private ISensor currentCO2Sensor = new CO2Sensor();
     private ISensor currentHumiditySensor = new HumiditySensor();
-
-    @GetMapping("getsensor")
-    public List<Double> getSensorValues() {
-
-        return getTenLastValues(temperatures);
-    }
-
-    @GetMapping("gettvoc")
-    public List<Double> getTvocValues() {
-
-        return getTenLastValues(tvocs);
-    }
 
     @GetMapping("temperature")
     public ISensor getTemperature() {
@@ -62,16 +46,7 @@ public class AsyncController {
         currentTvocSensor = new TvocSensor(tvoc);
         currentCO2Sensor = new CO2Sensor(co2);
         currentHumiditySensor = new HumiditySensor(h);
-        temperatures.add(currentTemperature);
-        tvocs.add(currentTvocSensor);
         return "ok";
-    }
-
-    private List<Double> getTenLastValues(List<ISensor> values) {
-        List<Double> res = new ArrayList<>();
-        int size = values.size() > VALUES_SIZE ? values.size() - VALUES_SIZE : 0;
-        values.subList(size, values.size()).forEach(t -> res.add(t.getValue()));
-        return res;
     }
 
 }

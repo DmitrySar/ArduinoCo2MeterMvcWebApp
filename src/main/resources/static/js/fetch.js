@@ -8,8 +8,7 @@ sensor = {
     min: 400,
 
     getColor: function() {
-        let color = this.value > this.max ? "#ed0949" : "#00508c";
-        return color;
+        return this.value > this.max ? "#ed0949" : "#00508c";
     }
 };
 
