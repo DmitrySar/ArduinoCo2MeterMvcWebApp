@@ -1,4 +1,25 @@
 const url = "http://" + location.host + "/";
+const TIMEOUT = 30000;
+
+function startAsync() {
+    co2Out('co2');
+    tvocOut('tvoc');
+    temperatureOut('temperature');
+    humidityOut('humidity');
+    setInterval(() => {
+        co2Out('co2');
+        tvocOut('tvoc');
+        temperatureOut('temperature');
+        humidityOut('humidity');
+    }, TIMEOUT);
+}
+
+function start() {
+    temperatureOut('temperature');
+    humidityOut('humidity');
+    tvocOut('tvoc');
+    co2Out('co2');
+}
 
 // значения датчика СО2
 sensor = {

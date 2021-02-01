@@ -6,34 +6,34 @@
     <link rel="stylesheet" href="css/graph2.css">
     <script type="text/javascript" src="js/fetch.js"></script>
 </head>
-<body class="dark">
+<body class="dark" onload="startAsync()">
 <h1>Показания</h1>
-<div class="divClean">
-    <button onclick="co2Out('co2')">CO2</button>
-    <button onclick="tvocOut('tvoc')">tvoc</button>
-    <button onclick="temperatureOut('temperature')">temp</button>
-    <button onclick="humidityOut('humidity')">hum</button>
-</div>
+<!--<div class="divClean">-->
+<!--    <button onclick="co2Out('co2')">CO2</button>-->
+<!--    <button onclick="tvocOut('tvoc')">tvoc</button>-->
+<!--    <button onclick="temperatureOut('temperature')">temp</button>-->
+<!--    <button onclick="humidityOut('humidity')">hum</button>-->
+<!--</div>-->
 
-<div id="co2" class="divClean" style="width: 100%;">
+<div id="co2" class="divClean" style="width: 1000%;">
 
 </div>
 <div class="divClean">
-    Уровень CO2, PPM
+    Уровень CO<sub>2</sub>, PPM
 </div>
-<div id="tvoc" class="divClean" style="width: 100%;">
+<div id="tvoc" class="divClean" style="width: 1000%;">
 
 </div>
 <div class="divClean">
     ЛОВ, PPM
 </div>
-<div id="temperature" class="divClean" style="width: 100%;">
+<div id="temperature" class="divClean" style="width: 1000%;">
 
 </div>
 <div class="divClean">
     Температура, C<sup>o</sup>
 </div>
-<div id="humidity" class="divClean" style="width: 100%;">
+<div id="humidity" class="divClean" style="width: 1000%;">
 
 </div>
 <div class="divClean">
