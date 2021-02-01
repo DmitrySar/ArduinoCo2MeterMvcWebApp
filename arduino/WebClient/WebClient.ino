@@ -14,6 +14,9 @@ int serverPort = 8080;
 uint8_t mac[6] = {0x00,0x01,0x02,0x03,0x04,0x05};
 IPAddress myIP(192,168,1,63);
 
+//server link pin
+int linkPin = A2;
+
 //Pin DHT
 int inputPin = 3;
 #define DHTTYPE DHT11
@@ -22,6 +25,8 @@ DHT dht(inputPin, DHTTYPE);
 void setup() {
   // Serial.begin(9600);
   pinMode(inputPin, INPUT);
+  pinMode(linkPin, OUTPUT);
+  digitalWrite(linkPin, HIGH);
 
   dht.begin();
   if(!ccs.begin()){
@@ -56,6 +61,7 @@ void doGet(String t, String h, String tvoc, String co2) {
     Ethernet.begin(mac, myIP);
     if (client.connect(server, serverPort)){
       // Serial.println(F("Connected to server"));
+      digitalWrite(linkPin, LOW);
       client.print(F("GET /sens?t="));
       client.print(t);
       client.print(F("&h="));
@@ -70,5 +76,6 @@ void doGet(String t, String h, String tvoc, String co2) {
       client.println();
   }else{
       // Serial.println(F("Connection to server failed"));
+      digitalWrite(linkPin, HIGH);
   }
 }
