@@ -2,7 +2,7 @@ const url = "http://" + location.host + "/";
 const TIMEOUT = 30000;
 
 function startAsync() {
-    start();
+    // start();
     setInterval(() => start(), TIMEOUT);
 }
 
