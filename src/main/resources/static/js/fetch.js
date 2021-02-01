@@ -2,16 +2,8 @@ const url = "http://" + location.host + "/";
 const TIMEOUT = 30000;
 
 function startAsync() {
-    co2Out('co2');
-    tvocOut('tvoc');
-    temperatureOut('temperature');
-    humidityOut('humidity');
-    setInterval(() => {
-        co2Out('co2');
-        tvocOut('tvoc');
-        temperatureOut('temperature');
-        humidityOut('humidity');
-    }, TIMEOUT);
+    start();
+    setInterval(() => start(), TIMEOUT);
 }
 
 function start() {
