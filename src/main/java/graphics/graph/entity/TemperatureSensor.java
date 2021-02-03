@@ -1,10 +1,17 @@
 package graphics.graph.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+@Entity
 public class TemperatureSensor implements ISensor {
 
+    @Id
+    @GeneratedValue
+    private int id;
     private double value;
     private LocalDateTime time;
 

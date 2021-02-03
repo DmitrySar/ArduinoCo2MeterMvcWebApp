@@ -1,9 +1,16 @@
 package graphics.graph.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
 public class TvocSensor implements ISensor {
 
+    @Id
+    @GeneratedValue
+    private int id;
     private double value;
     private LocalDateTime time;
 
