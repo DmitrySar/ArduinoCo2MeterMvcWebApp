@@ -14,11 +14,22 @@
         <input type="submit">
     </form>
 </div>
-<div id="co2" class="divClean" style="width: 1000%" >
+
+<div id="co2" class="divClean" th:style="|width: ${co2List.size() * 60}px;|" >
     <span th:each="co2: ${co2List}">
-    <span class="div" th:oninput="addLocalCO2(${co2.value})">
-    </span>
+        <span th:with="h = ${co2.value > 1000 ? 250 : 0.25 * co2.value},
+            color = ${co2.value > 1000 ? '#ed0949' : '#00508c'},
+            value = ${#numbers.formatDecimal(co2.value, 3, 'DEFAULT', 0, 'POINT')}">
+        <div class="div" th:style="|margin-top: ${250 - h}px; height: ${h}px; background-color: ${color};|" th:text="${value}">
+            <div class="innerDiv" th:style="|margin-top: ${h - 10}px;|">
+            </div>
+        </div>
+        </span>
     </span>
 </div>
+<div class="divClean">
+    Уровень CO<sub>2</sub>, PPM
+</div>
+
 </body>
 </html>

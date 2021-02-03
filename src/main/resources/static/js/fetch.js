@@ -69,14 +69,6 @@ function doGet(url, id, min, max) {
     });
 }
 
-function addLocalCO2(value) {
-    sensor.min = 400;
-    sensor.max = 1000;
-    sensor.value = value;
-    sensor.time = "12:00";//time.substr(11, 5);
-    calc('co2', sensor);
-}
-
 // Расчёт параметров
 function calc(id, sensor) {
     parameters.k = H / sensor.max;
