@@ -20,13 +20,17 @@
     <span th:each="co2: ${co2List}">
         <span th:with="h = ${co2.value > 1000 ? 250 : 0.25 * co2.value},
             color = ${co2.value > 1000 ? '#ed0949' : '#00508c'},
-            value = ${#numbers.formatDecimal(co2.value, 3, 'DEFAULT', 0, 'POINT')},
-            time = ${co2.time.toString().substring(11,16)}">
+            value = ${#numbers.formatDecimal(co2.value, 3, 'DEFAULT', 0, 'POINT')}">
         <div class="div" th:style="|margin-top: ${250 - h}px; height: ${h}px; background-color: ${color};|"
-             th:text="|${value} ${time}|">
+             th:text="${value}">
 
         </div>
         </span>
+    </span>
+</div>
+<div class="divClean" th:style="|width: ${tvocList.size() * 60}px;|" >
+    <span th:each="co2: ${co2List}">
+        <div class="div" style="height: 10px; background-color: black" th:text="${co2.time.toString().substring(11,16)}"/>
     </span>
 </div>
 <div class="divClean">
@@ -41,15 +45,66 @@
             color = ${tvoc.value > 100 ? '#ed0949' : '#00508c'},
             value = ${#numbers.formatDecimal(tvoc.value, 2, 'DEFAULT', 0, 'POINT')}">
         <div class="div" th:style="|margin-top: ${250 - h}px; height: ${h}px; background-color: ${color};|" th:text="${value}">
-            <div class="innerDiv" th:style="|margin-top: ${h - 10}px;|">
-            </div>
+
         </div>
         </span>
+
+    </span>
+</div>
+<div class="divClean" th:style="|width: ${tvocList.size() * 60}px;|" >
+    <span th:each="tvoc: ${tvocList}">
+        <div class="div" style="height: 10px; background-color: black" th:text="${tvoc.time.toString().substring(11,16)}"/>
     </span>
 </div>
 <div class="divClean">
     Уровень ЛОВ, PPM
 </div>
 <!--/VOC-->
+
+<!--Temperature-->
+<div id="temperature" class="divClean" th:style="|width: ${temperatureList.size() * 60}px;|" >
+    <span th:each="t: ${temperatureList}">
+        <span th:with="h = ${t.value > 50 ? 250 : 5 * t.value},
+            color = ${t.value > 100 ? '#ed0949' : '#00508c'},
+            value = ${#numbers.formatDecimal(t.value, 2, 'DEFAULT', 0, 'POINT')}">
+        <div class="div" th:style="|margin-top: ${250 - h}px; height: ${h}px; background-color: ${color};|" th:text="${value}">
+
+        </div>
+        </span>
+
+    </span>
+</div>
+<div class="divClean" th:style="|width: ${temperatureList.size() * 60}px;|" >
+    <span th:each="t: ${temperatureList}">
+        <div class="div" style="height: 10px; background-color: black" th:text="${t.time.toString().substring(11,16)}"/>
+    </span>
+</div>
+<div class="divClean">
+    Температура, <sup>o</sup>C
+</div>
+<!--/Temperature-->
+
+<!--Humidity-->
+<div id="humidity" class="divClean" th:style="|width: ${humidityList.size() * 60}px;|" >
+    <span th:each="t: ${humidityList}">
+        <span th:with="h = ${t.value > 100 ? 250 : 2.5 * t.value},
+            color = ${t.value > 100 ? '#ed0949' : '#00508c'},
+            value = ${#numbers.formatDecimal(t.value, 2, 'DEFAULT', 0, 'POINT')}">
+        <div class="div" th:style="|margin-top: ${250 - h}px; height: ${h}px; background-color: ${color};|" th:text="${value}">
+
+        </div>
+        </span>
+
+    </span>
+</div>
+<div class="divClean" th:style="|width: ${temperatureList.size() * 60}px;|" >
+    <span th:each="t: ${humidityList}">
+        <div class="div" style="height: 10px; background-color: black" th:text="${t.time.toString().substring(11,16)}"/>
+    </span>
+</div>
+<div class="divClean">
+    Влажность, %
+</div>
+<!--/Humidity-->
 </body>
 </html>
