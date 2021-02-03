@@ -14,9 +14,10 @@
         <input type="submit">
     </form>
 </div>
-<div id="co2" class="divClean" th:each="co2: ${co2List}">
-    <div class="div" th:text="${co2.value}">
-    </div>
+<div id="co2" class="divClean" style="width: 1000%">
+    <span th:each="co2: ${co2List}">
+        <div class="div" th:text="${co2.value}"/>
+    </span>
 </div>
 </body>
 </html>
