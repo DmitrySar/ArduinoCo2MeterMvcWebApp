@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>history</title>
+    <link rel="stylesheet" href="css/graph2.css">
+    <script type="text/javascript" src="js/fetch.js"></script>
+</head>
+<body class="dark">
+<div class="divClean">
+    <form action="history" method="get">
+        <input type="datetime-local" name="start">
+        <input type="datetime-local" name="stop">
+        <input type="submit">
+    </form>
+</div>
+<div id="co2" class="divClean" th:each="co2: ${co2List}">
+    <div class="div" th:text="${co2.value}">
+    </div>
+</div>
+</body>
+</html>
