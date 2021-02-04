@@ -6,13 +6,11 @@ import graphics.graph.repository.TemperatureRepository;
 import graphics.graph.repository.TvocRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -35,8 +33,8 @@ public class DataController {
 
     @GetMapping("/history")
     public String getHistory(@RequestParam(defaultValue = "#{T(java.time.LocalDateTime).now().minusDays(1)}")
-                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                         LocalDateTime start,
+                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                                     LocalDateTime start,
                              @RequestParam(defaultValue = "#{T(java.time.LocalDateTime).now()}")
                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                                      LocalDateTime stop,
