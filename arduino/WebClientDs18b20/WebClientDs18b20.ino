@@ -43,7 +43,7 @@ void setup() {
 
 void loop() {
   ds.requestTemperatures();
- float h = 25;//dht.readHumidity();
+ float h = 20;//dht.readHumidity();
  float t = ds.getTempCByIndex(0);//dht.readTemperature();
  if(ccs.available()){
   ccs.setEnvironmentalData(h, t);
