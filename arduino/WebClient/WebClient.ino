@@ -6,7 +6,7 @@ Adafruit_CCS811 ccs;
 
 EthernetClient client;
 //server address
-char server[] = "192.168.1.28";
+char server[] = "192.168.1.179";
 //server port
 int serverPort = 8080;
 
@@ -75,6 +75,12 @@ void doGet(String t, String h, String tvoc, String co2) {
       client.print(server);
       client.print(":");
       client.println(serverPort);
+      client.println(F("Connection: keep-alive"));
+      client.println(F("Upgrade-Insecure-Requests: 1"));
+      client.println(F("User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Mobile Safari/537.36"));
+      client.println(F("Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"));
+      client.println(F("Accept-Encoding: gzip, deflate"));
+      client.println(F("Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"));
       client.println();
   }else{
       // Serial.println(F("Connection to server failed"));
