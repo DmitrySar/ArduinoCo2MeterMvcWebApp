@@ -72,7 +72,9 @@ void doGet(String t, String h, String tvoc, String co2) {
       client.print(co2);
       client.println(F(" HTTP/1.1"));
       client.print(F("Host: "));
-      client.println(server);
+      client.print(server);
+      client.print(":");
+      client.println(serverPort);
       client.println();
   }else{
       // Serial.println(F("Connection to server failed"));
