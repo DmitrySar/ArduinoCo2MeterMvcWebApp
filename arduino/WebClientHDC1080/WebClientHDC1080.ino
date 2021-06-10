@@ -25,7 +25,7 @@ int linkPin = A2;
 ClosedCube_HDC1080 hdc1080;
 
 void setup() {
-  // Serial.begin(9600);
+  //Serial.begin(9600);
   //pinMode(inputPin, INPUT);
   hdc1080.begin(0x40);
   hdc1080.setResolution(HDC1080_RESOLUTION_11BIT, HDC1080_RESOLUTION_14BIT);
@@ -46,11 +46,22 @@ void loop() {
  //float t = dht.readTemperature();
  float t = hdc1080.readTemperature();
  float h = hdc1080.readHumidity();
+
  if(ccs.available()){
   ccs.setEnvironmentalData(h, t);
   if(!ccs.readData()){
     float tvoc = ccs.getTVOC();
     float co2 = ccs.geteCO2();
+
+      //Serial.print(t);
+      //Serial.print(F(", "));
+      //Serial.print(h);
+      //Serial.print(F(", "));
+      //Serial.print(ccs.getTVOC());
+      //Serial.print(F(", "));
+      //Serial.println(ccs.geteCO2());
+
+    
     doGet(String(t), String(h), String(tvoc), String(co2)); //seng GET request
     while(client.connected()){
       if(client.available()){
