@@ -7,13 +7,16 @@ Adafruit_CCS811 ccs;
 
 EthernetClient client;
 //server address
-char server[] = "192.168.1.28";
+char server[] = "192.168.1.100";
 //server port
 int serverPort = 8080;
 
 //my address
 uint8_t mac[6] = {0x00,0x01,0x02,0x03,0x04,0x05};
 IPAddress myIP(192,168,1,66);
+byte myDns[] = {192, 168, 1, 100};  // адрес DNS-сервера
+byte gateway[] = {192, 168, 1, 100};  // адрес сетевого шлюза
+byte subnet[] = {255, 255, 255, 0};  // маска подсети
 
 //server link pin
 int linkPin = A2;
@@ -76,7 +79,7 @@ void loop() {
 
 // http get request
 void doGet(String t, String h, String tvoc, String co2) {
-    Ethernet.begin(mac, myIP);
+    Ethernet.begin(mac, myIP, myDns, gateway, subnet);
     if (client.connect(server, serverPort)){
       // Serial.println(F("Connected to server"));
       digitalWrite(linkPin, LOW);
