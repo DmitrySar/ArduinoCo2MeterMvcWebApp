@@ -1,6 +1,7 @@
 #include <DHT.h>
 #include <UIPEthernet.h>
 #include <Adafruit_CCS811.h>
+//#include <ClosedCube_HDC1080.h>
 
 Adafruit_CCS811 ccs;
 
@@ -12,38 +13,58 @@ int serverPort = 8080;
 
 //my address
 uint8_t mac[6] = {0x00,0x01,0x02,0x03,0x04,0x05};
-IPAddress myIP(192,168,1,63);
+IPAddress myIP(192,168,1,66);
+byte myDns[] = {192, 168, 1, 100};  // адрес DNS-сервера
+byte gateway[] = {192, 168, 1, 100};  // адрес сетевого шлюза
+byte subnet[] = {255, 255, 255, 0};  // маска подсети
 
 //server link pin
 int linkPin = A2;
 
 //Pin DHT
 int inputPin = 3;
-#define DHTTYPE DHT11
+#define DHTTYPE DHT22
 DHT dht(inputPin, DHTTYPE);
+//ClosedCube_HDC1080 hdc1080;
 
 void setup() {
-  // Serial.begin(9600);
+  //Serial.begin(9600);
   pinMode(inputPin, INPUT);
+  //hdc1080.begin(0x40);
+  //hdc1080.setResolution(HDC1080_RESOLUTION_11BIT, HDC1080_RESOLUTION_14BIT);
+  
   pinMode(linkPin, OUTPUT);
   digitalWrite(linkPin, HIGH);
-
-  dht.begin();
+  
   if(!ccs.begin()){
     while(1);
   }
   while(!ccs.available());
   ccs.setEnvironmentalData(dht.readHumidity(), dht.readTemperature());
+  //ccs.setEnvironmentalData(hdc1080.readHumidity(), hdc1080.readTemperature());
 }
 
 void loop() {
  float h = dht.readHumidity();
  float t = dht.readTemperature();
+ //float t = hdc1080.readTemperature();
+ //float h = hdc1080.readHumidity();
+
  if(ccs.available()){
   ccs.setEnvironmentalData(h, t);
   if(!ccs.readData()){
     float tvoc = ccs.getTVOC();
     float co2 = ccs.geteCO2();
+
+      //Serial.print(t);
+      //Serial.print(F(", "));
+      //Serial.print(h);
+      //Serial.print(F(", "));
+      //Serial.print(ccs.getTVOC());
+      //Serial.print(F(", "));
+      //Serial.println(ccs.geteCO2());
+
+    
     doGet(String(t), String(h), String(tvoc), String(co2)); //seng GET request
     while(client.connected()){
       if(client.available()){
@@ -58,7 +79,7 @@ void loop() {
 
 // http get request
 void doGet(String t, String h, String tvoc, String co2) {
-    Ethernet.begin(mac, myIP);
+    Ethernet.begin(mac, myIP, myDns, gateway, subnet);
     if (client.connect(server, serverPort)){
       // Serial.println(F("Connected to server"));
       digitalWrite(linkPin, LOW);
