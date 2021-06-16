@@ -29,6 +29,7 @@ DHT dht(inputPin, DHTTYPE);
 
 void setup() {
   //Serial.begin(9600);
+  dht.begin();
   pinMode(inputPin, INPUT);
   //hdc1080.begin(0x40);
   //hdc1080.setResolution(HDC1080_RESOLUTION_11BIT, HDC1080_RESOLUTION_14BIT);
