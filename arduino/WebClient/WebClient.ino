@@ -6,7 +6,7 @@ Adafruit_CCS811 ccs;
 
 EthernetClient client;
 //server address
-char server[] = "130.61.244.38";
+char server[] = "192.168.1.28";
 //server port
 int serverPort = 8080;
 
